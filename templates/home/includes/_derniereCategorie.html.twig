@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 class="h1 mt-5 mb-3">Nos catégories les plus récentes</h1>
+    <div class="row">
+        {% for categorie in categories %}
+        <div class="col-4">
+            <div class="card-group">
+                <div class="card bg-light text-dark mb-3">
+                    <div class="card-body ">
+                        <h5 class="card-title">{{categorie.titre}}</h5>
+                        <p class="card-text">{{categorie.description|u.truncate(70,'...',false)}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent">Ecrit le {{categorie.createdAt|date("d/m/Y")}} à
+                        {{categorie.createdAt|date("H:i")}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

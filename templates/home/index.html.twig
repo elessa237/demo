@@ -3,26 +3,9 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
 
-        {% for article in articles %}
-        <div class="col-4">
-            <div class="card-group">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://via.placeholder.com/250x250" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">{{article.contenu | u.truncate(100, '...', false)}}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">écrit par {{article.auteur}} le {{article.createdAt |
-                            date("d/m/Y")}} à
-                            {{article.createdAt | date("H:m")}}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
+{% include "home/includes/_dernierArticles.html.twig" %}
+
+{% include "home/includes/_derniereCategorie.html.twig" %}
+
 {% endblock %}

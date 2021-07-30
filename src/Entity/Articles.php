@@ -39,9 +39,15 @@ class Articles
      */
     private $commentaires;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="articles")
+     */
+    private $categorie;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->categorie = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,30 @@ class Articles
                 $commentaire->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(Categorie $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
+        }
+
+        return $this;
+    }
+
+    public function removeCategorie(Categorie $categorie): self
+    {
+        $this->categorie->removeElement($categorie);
 
         return $this;
     }
