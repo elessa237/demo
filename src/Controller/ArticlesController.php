@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Articles;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,8 +23,10 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/article/{id}", name="article_show")
      */
-    public function FunctionName(): Response
+    public function FunctionName(Articles $article): Response
     {
-        return $this->render('articles/show.html.twig', []);
+        return $this->render('articles/show.html.twig', [
+            'article'=>$article,
+        ]);
     }
 }
