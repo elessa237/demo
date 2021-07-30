@@ -1,0 +1,16 @@
+{% extends "base/base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <img src="https://via.placeholder.com/1000x350" alt="" class="imgs">
+        <div class="row">
+            <div class="col-9">
+                <p class="p">{{article.contenu}}</p>
+            </div>
+            <div class="col-2">
+                <h5 class="h5">Redigé par {{article.auteur}}</h3>
+                <small>Le {{article.createdAt|date("d/m/Y")}} à {{article.createdAt|date("H:i")}}</small>
+            </div>
+        </div>
+    </div>
+{% endblock %}
