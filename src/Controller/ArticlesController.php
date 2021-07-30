@@ -18,4 +18,12 @@ class ArticlesController extends AbstractController
             'articles' => $articles->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/article/{id}", name="article_show")
+     */
+    public function FunctionName(): Response
+    {
+        return $this->render('articles/show.html.twig', []);
+    }
 }
