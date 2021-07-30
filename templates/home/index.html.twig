@@ -25,4 +25,20 @@
         {% endfor %}
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        {% for categorie in categories %}
+        <div class="col-4">
+            <div class="card border-primary mt-3" style="max-width: 18rem;">
+                <div class="card-header">{{categorie.titre}}</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">{{categorie.createdAt | date("d/m/Y")}}</h5>
+                    <p class="card-text">{{categorie.description}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
