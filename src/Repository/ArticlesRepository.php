@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Articles;
+use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,6 +28,16 @@ class ArticlesRepository extends ServiceEntityRepository
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findAllArticles(Categorie $id):array
+    {
+        return $this->createQueryBuilder('a')
+            ->where(':categorie MEMBER OF a.categorie')
+            ->setParameter('categorie', $id)
+            ->getQuery()
+            ->getResult();
+        ;
     }
 
     // /**
