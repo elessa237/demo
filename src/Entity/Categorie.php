@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
+ * @author Elessa <elessaspirite@icloud.com>
  */
 class Categorie
 {

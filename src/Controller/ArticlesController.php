@@ -26,6 +26,7 @@ class ArticlesController extends AbstractController
 
     /**
      * @Route("/article/{id}", name="article_show")
+     * @author Elessa <elessaspirite@icloud.com>
      */
     public function FunctionName(Articles $article, Request $request, EntityManagerInterface $manager): Response
     {

@@ -13,6 +13,7 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @author Elessa <elessaspirite@icloud.com>
      */
     public function index(ArticlesRepository $articles, CategorieRepository $categories): Response
     {

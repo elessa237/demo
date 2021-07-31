@@ -11,6 +11,7 @@ class CategorieController extends AbstractController
 {
     /**
      * @Route("/categorie", name="categorie")
+     * @author Elessa <elessaspirite@icloud.com>
      */
     public function categorie(CategorieRepository $categories): Response
     {
