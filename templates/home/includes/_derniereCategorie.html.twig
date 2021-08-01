@@ -11,6 +11,7 @@
                     </div>
                     <div class="card-footer bg-transparent">Ecrit le {{categorie.createdAt|date("d/m/Y")}} à
                         {{categorie.createdAt|date("H:i")}}
+                        <a href="{{path('categorie_show_article', {'id': categorie.id})}}" class="btn btn-light float-end">Consulter la liste des articles</a>
                     </div>
                 </div>
             </div>
