@@ -18,16 +18,24 @@
             {{form_widget(form.contenu, {'attr':{'class':'form-control',
             'placeholder':'donner nous le fond de votre pensée'}})}}
         </div>
+        {% if ModeCreation %}
+            <div class="form-group mb-3">
+                <label for="categorie" class="form-label">Dans la categorie :</label>
+                <select name="categorie" class="form-select" id="">
+                    {% for categorie in categories %}
+                        <option value="{{categorie.id}}" name="{{categorie.id}}">{{categorie.titre}}</option>
+                    {% endfor %}
+                </select>
+            </div>           
+        {% endif %}
         <div class="form-group mb-3">
-            <label for="categorie" class="form-label">Dans la categorie :</label>
-            <select name="categorie" class="form-select" id="">
-                {% for categorie in categories %}
-                    <option value="{{categorie.id}}" name="{{categorie.id}}">{{categorie.titre}}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group mb-3">
-            <input type="submit" class="btn btn-primary" value="Creer l'article">
+            <button type="submit" class="btn btn-primary">
+                {% if ModeCreation %}
+                   Creer l'article 
+                {% else %}
+                    Appliquer les modifications
+                {% endif %}
+            </button>
         </div>
     {{form_end(form)}}
 

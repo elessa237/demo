@@ -26,28 +26,32 @@ class ArticlesController extends AbstractController
             'articles' => $articles->findAllArticle(),
         ]);
     }
-    
+
     /**
      * @Route("/article/create", name="create_article")
+     * @Route("/article/{id}/edit", name="edit_article")
      */
-    public function edit(Request $request, CategorieRepository $categories, ServicePersistance $persist): Response
+    public function edit(Articles $article = null, Request $request, CategorieRepository $categories, ServicePersistance $persist): Response
     {
-        $article = new Articles();
+        if (!$article) {
+            $article = new Articles();
+        }
         $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
             $id = $request->request->get('categorie');
-            $persist->persistArticle($data,$id);
+            $persist->persistArticle($data, $id);
 
             return $this->redirectToRoute('articles');
         }
 
         return $this->render('articles/create_article.html.twig', [
-            'categories' => $categories->findAll(),
+            'categories' => $categories->findAllCategorie(),
+            'ModeCreation' => $article->getId() == null,
             'form' => $form->createView(),
         ]);
     }
@@ -60,7 +64,7 @@ class ArticlesController extends AbstractController
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
-         
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -71,9 +75,8 @@ class ArticlesController extends AbstractController
         }
 
         return $this->render('articles/show.html.twig', [
-            'article'=>$article,
-            'form' => $form->createView(),       
+            'article' => $article,
+            'form' => $form->createView(),
         ]);
     }
-
 }

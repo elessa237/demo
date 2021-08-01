@@ -112,4 +112,5 @@ class Categorie
 
         return $this;
     }
+
 }
