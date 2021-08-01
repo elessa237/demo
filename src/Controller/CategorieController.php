@@ -18,7 +18,7 @@ class CategorieController extends AbstractController
     public function categorie(CategorieRepository $categories): Response
     {
         return $this->render('categorie/categories.html.twig', [
-            'categories' => $categories->findAll(),
+            'categories' => $categories->findAllCategorie(),
         ]);
     }
 
@@ -28,7 +28,7 @@ class CategorieController extends AbstractController
     public function show(Categorie $categories, ArticlesRepository $articlesRepository): Response
     {
         return $this->render('categorie/categorie_show.html.twig', [
-            'articles' => $articlesRepository->findAllArticles($categories),
+            'articles' => $articlesRepository->findAllArticlesInCategorie($categories),
             'categorie'=> $categories
         ]);
     }

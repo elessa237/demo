@@ -30,14 +30,22 @@ class ArticlesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findAllArticles(Categorie $id):array
+    public function findAllArticlesInCategorie(Categorie $id): array
     {
         return $this->createQueryBuilder('a')
             ->where(':categorie MEMBER OF a.categorie')
             ->setParameter('categorie', $id)
             ->getQuery()
+            ->getResult();;
+    }
+
+
+    public function findAllArticle() : array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
             ->getResult();
-        ;
     }
 
     // /**

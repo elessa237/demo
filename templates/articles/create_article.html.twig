@@ -1,0 +1,34 @@
+{% extends "base/base.html.twig" %}
+
+{% block title %}
+    Creer un article
+{% endblock  %}
+
+{% block body %}
+    
+    {{form_start(form)}}
+        <div class="form-group mb-3">
+            <label for="auteur" class="form-label">Nom :</label>
+            {{form_widget(form.auteur, {'attr':{'class':'form-control',
+            'placeholder':'votre nom...'
+            }})}}
+        </div>
+        <div class="form-group mb-3">
+            <label for="contenu" class="form-label">contenu de l'article :</label>
+            {{form_widget(form.contenu, {'attr':{'class':'form-control',
+            'placeholder':'donner nous le fond de votre pensée'}})}}
+        </div>
+        <div class="form-group mb-3">
+            <label for="categorie" class="form-label">Dans la categorie :</label>
+            <select name="categorie" class="form-select" id="">
+                {% for categorie in categories %}
+                    <option value="{{categorie.id}}" name="{{categorie.id}}">{{categorie.titre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <input type="submit" class="btn btn-primary" value="Creer l'article">
+        </div>
+    {{form_end(form)}}
+
+{% endblock  %}

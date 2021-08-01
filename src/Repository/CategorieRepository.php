@@ -28,6 +28,14 @@ class CategorieRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findAllCategorie()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects
     //  */
