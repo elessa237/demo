@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Categorie|null findOneBy(array $criteria, array $orderBy = null)
  * @method Categorie[]    findAll()
  * @method Categorie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @author Elessa <elessaspirite@icloud.com>
  */
 class CategorieRepository extends ServiceEntityRepository
 {
@@ -24,6 +25,14 @@ class CategorieRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->orderBy('c.createdAt', 'DESC')
             ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllCategorie()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }

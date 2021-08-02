@@ -4,16 +4,16 @@
 
 {% block body %}
 <div class="container">
+    <h1 class="h1 mt-5 mb-3">Tout nos articles</h1>
     <div class="row">
         {% for article in articles %}
-        <div class="col-3 mb-3">
+        <div class="col-lg-3 col-md-6 mb-3">
             <div class="card-group">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><small>Ecrit par</small> {{article.auteur}}</h5>
                         <p class="card-text">{{article.contenu|u.truncate(100,'...',false)}}</p>
-                        <a {#data-bs-toggle="offcanvas"#} href="{{path('article_show',{'id':article.id})}}" {#data-bs-target="#offcanvasExample"#} {#role="button" aria-controls="offcanvasExample"#} class="btn btn-primary float-end">Lire la suite</a>
-                        <!-- <a href="#" class="btn btn-primary float-end">Commenter</a> -->
+                        <a href="{{path('article_show',{'id':article.id})}}" class="btn btn-primary float-end">Lire la suite</a>
                     </div>
                 </div>
             </div>
@@ -21,16 +21,5 @@
         {% endfor %}
     </div>
 </div>
-<!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">BySpirite</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div>
-            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
-            etc.
-        </div>
-    </div>
-</div> -->
+
 {% endblock %}

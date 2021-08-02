@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Articles;
+use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -11,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Articles|null findOneBy(array $criteria, array $orderBy = null)
  * @method Articles[]    findAll()
  * @method Articles[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @author Elessa <elessaspirite@icloud.com>
  */
 class ArticlesRepository extends ServiceEntityRepository
 {
@@ -24,6 +26,24 @@ class ArticlesRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', 'DESC')
             ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllArticlesInCategorie(Categorie $id): array
+    {
+        return $this->createQueryBuilder('a')
+            ->where(':categorie MEMBER OF a.categorie')
+            ->setParameter('categorie', $id)
+            ->getQuery()
+            ->getResult();;
+    }
+
+
+    public function findAllArticle() : array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
