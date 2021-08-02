@@ -6,6 +6,7 @@
 
 {% block body %}
     
+<div class="container">
     {{form_start(form)}}
         <div class="form-group mb-3">
             <label for="auteur" class="form-label">Nom :</label>
@@ -16,7 +17,9 @@
         <div class="form-group mb-3">
             <label for="contenu" class="form-label">contenu de l'article :</label>
             {{form_widget(form.contenu, {'attr':{'class':'form-control',
-            'placeholder':'donner nous le fond de votre pensée'}})}}
+            'placeholder':'donner nous le fond de votre pensée',
+            'style':'height: 200px'
+            }})}}
         </div>
         {% if ModeCreation %}
             <div class="form-group mb-3">
@@ -38,5 +41,6 @@
             </button>
         </div>
     {{form_end(form)}}
+</div>
 
 {% endblock  %}
