@@ -3,13 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
-use App\Entity\Categorie;
 use App\Entity\Commentaire;
 use App\Form\ArticleType;
 use App\Form\CommentaireType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategorieRepository;
 use App\Utils\ServicePersistance;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +20,12 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/articles", name="articles")
      */
-    public function articles(ArticlesRepository $articles): Response
+    public function articles(ArticlesRepository $articleRepository, PaginatorInterface $pagination, Request $request): Response
     {
+        $articleRepository = $articleRepository->findAllArticle();
+        $articles = $pagination->paginate($articleRepository, $request->query->getInt('page', 1), 8);
         return $this->render('articles/articles.html.twig', [
-            'articles' => $articles->findAllArticle(),
+            'articles' => $articles,
         ]);
     }
 

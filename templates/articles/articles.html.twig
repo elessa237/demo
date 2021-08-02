@@ -20,6 +20,10 @@
         </div>
         {% endfor %}
     </div>
+    <div class="d-flex justify-content-center">
+        {% do articles.setPageRange(4) %}
+        {{ knp_pagination_render(articles, 'base/includes/pagination.html.twig') }}
+    </div>
 </div>
 
 {% endblock %}
