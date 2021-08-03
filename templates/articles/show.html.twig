@@ -3,7 +3,7 @@
 {% block Title %} {{article.auteur}} {% endblock %}
 {% block body %}
 <div class="container">
-    <img src="https://via.placeholder.com/1000x350" alt="" class="img col-12">
+    <img src="{{ vich_uploader_asset(article, 'imageFile') }}" class="img col-12">
     <div class="row">
         <div class="col-9">
             <p class="p">{{article.contenu}}</p>
