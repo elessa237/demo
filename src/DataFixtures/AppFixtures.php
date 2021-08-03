@@ -26,6 +26,7 @@ class AppFixtures extends Fixture
                 $article->setAuteur($faker->firstName())
                     ->setContenu($faker->paragraph(5))
                     ->setCreatedAt($faker->dateTimeBetween('-2 week'))
+                    ->setImages('chat.jpg')
                     ->addCategorie($categorie);
                 $manager->persist($article);
             }
