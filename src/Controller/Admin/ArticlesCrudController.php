@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Articles;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -25,8 +24,9 @@ class ArticlesCrudController extends AbstractCrudController
         return [
             TextField::new('auteur'),
             TextareaField::new('contenu'),
-            TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
+            TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('images')->setBasePath('images/articles')->onlyOnIndex(),
+            AssociationField::new('commentaires')->onlyOnIndex(),
             AssociationField::new('categorie'),
         ];
     }

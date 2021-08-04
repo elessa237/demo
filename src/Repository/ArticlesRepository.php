@@ -36,7 +36,7 @@ class ArticlesRepository extends ServiceEntityRepository
             ->where(':categorie MEMBER OF a.categorie')
             ->setParameter('categorie', $id)
             ->getQuery()
-            ->getResult();;
+            ->getResult();
     }
 
 

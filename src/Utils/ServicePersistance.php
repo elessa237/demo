@@ -32,12 +32,11 @@ class ServicePersistance
         $this->manager->flush();
     }
 
-    public function persistCommentaire(Articles $article)
+    public function persistCommentaire(Articles $id, Commentaire $commentaire)
     {
-        $commentaire = new Commentaire();
 
-        $commentaire->setCreatedAt(new \DateTime())
-            ->setArticle($article);
+        $commentaire->setCreatedAt(new \DateTime('now'))
+            ->setArticle($id);
 
         $this->manager->persist($commentaire);
         $this->manager->flush();

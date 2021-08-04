@@ -8,6 +8,7 @@ use App\Form\ArticleType;
 use App\Form\CommentaireType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategorieRepository;
+use App\Repository\CommentaireRepository;
 use App\Utils\ServicePersistance;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,7 +63,7 @@ class ArticlesController extends AbstractController
      * @Route("/article/{id}", name="article_show")
      * @author Elessa <elessaspirite@icloud.com>
      */
-    public function FunctionName(Articles $article, Request $request, ServicePersistance $persist): Response
+    public function show(Articles $article, Request $request, ServicePersistance $persist, CommentaireRepository $commentaireRepository): Response
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -71,7 +72,8 @@ class ArticlesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $persist->persistCommentaire($article);
+            $id = $article;
+            $persist->persistCommentaire($id, $data);
 
             return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
         }
@@ -79,6 +81,7 @@ class ArticlesController extends AbstractController
         return $this->render('articles/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
+            'commentaires' => $commentaireRepository->findAllComments($article),
         ]);
     }
 }
