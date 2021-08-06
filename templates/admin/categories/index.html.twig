@@ -1,0 +1,43 @@
+{% extends "base/base_admin.html.twig" %}
+
+{% block body %}
+<div class="jumbotron row mb-4 container">
+    <div class="col-9">
+        <h1 class="h1 text-center">Gestion des Categories</h1>
+    </div>
+
+    <div class="col-2">
+        <a class="btn btn-success" href="{{ path('categories_new') }}">Creer une categorie</a>
+    </div>
+</div>
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Creer le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.titre }}</td>
+                <td>{{ categorie.description|u.truncate(40, '...', false) }}</td>
+                <td>{{ categorie.createdAt|date('d-m-Y H:i:s')}}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('categories_show', {'id': categorie.id}) }}">Voir</a>
+                    <a class="btn btn-secondary" href="{{ path('categories_edit', {'id': categorie.id}) }}">Editer</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Aucune categorie trouver</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

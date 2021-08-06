@@ -1,0 +1,16 @@
+{% extends "base/base_admin.html.twig" %}
+
+{% block body %}
+    <h1>Modifier la categorie</h1>
+
+    <div class="form mb-3 col-8">
+        {{ include('admin/categories/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    </div>
+
+    <a class="btn btn-secondary" href="{{ path('categories_index') }}">Retouner à la liste</a>
+
+    <div class="form-check-inline">
+        {{ include('admin/categories/_delete_form.html.twig') }}
+    </div>
+    
+{% endblock %}

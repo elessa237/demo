@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    <div class="form-group mb-3">
+        {{form_row(form.titre)}}
+    </div>
+    <div class="form-group mb-3">
+        {{form_row(form.description)}}
+    </div>
+    <div class="form-group mb-3">
+        <button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+    </div>
+{{ form_end(form) }}

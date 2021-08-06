@@ -43,6 +43,7 @@ class ArticlesAdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           $article->setCreatedAt(new \DateTime('now'));
             $manager->persist($article);
             $manager->flush();
             return $this->redirectToRoute('articles_index');
