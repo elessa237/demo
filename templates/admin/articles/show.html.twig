@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ article.images }}</td>
+                <td><img src="{{ vich_uploader_asset(article,'imageFile') | imagine_filter('small') }}" alt=""></td>
             </tr>
         </tbody>
     </table>

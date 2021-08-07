@@ -29,7 +29,7 @@
                 <td>{{ article.auteur }}</td>
                 <td>{{ article.contenu | u.truncate(40, '...', false) }}</td>
                 <td>{{ article.createdAt|date('d-m-Y H:i:s')}}</td>
-                <td>{{ article.images }}</td>
+                <td> <img src="{{ vich_uploader_asset(article,'imageFile') | imagine_filter('mignature') }}" alt=""></td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('articles_show', {'id': article.id}) }}">Voir</a>
                 </td>
