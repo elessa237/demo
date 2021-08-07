@@ -24,7 +24,7 @@ class ServicePersistance
             $categorie = new Categorie();
             $categorie = $this->categorieRepository->findOneBy(['id' => $id]);
             $article->addCategorie($categorie);
-            $article->setCreatedAt(new \DateTime('now'));
+            // $article->setCreatedAt(new \DateTime('now'));
         }
 
 
