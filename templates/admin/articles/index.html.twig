@@ -2,11 +2,11 @@
 
 {% block body %}
 <div class="jumbotron row mb-4 container">
-    <div class="col-9">
+    <div class="col-8 col-lg-9">
         <h1 class="h1 text-center">Gestion des articles</h1>
     </div>
 
-    <div class="col-2">
+    <div class="col-4 col-lg-2">
         <a class="btn btn-success" href="{{ path('articles_new') }}">Creer un article</a>
     </div>
 </div>
@@ -32,7 +32,6 @@
                 <td>{{ article.images }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('articles_show', {'id': article.id}) }}">Voir</a>
-                    <a class="btn btn-secondary" href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a>
                 </td>
             </tr>
             {% else %}

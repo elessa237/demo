@@ -23,9 +23,9 @@ class ArticlesAdminController extends AbstractController
     public function index(ArticlesRepository $articlesRepository, PaginatorInterface $pagination, Request $request): Response
     {
         $articles = $pagination->paginate(
-            $articlesRepository->findAll(),
+            $articlesRepository->findAllArticle(),
             $request->query->getInt('page',1),
-            10
+            20
         );
 
         return $this->render('admin/articles/index.html.twig', [
@@ -62,26 +62,6 @@ class ArticlesAdminController extends AbstractController
     {
         return $this->render('admin/articles/show.html.twig', [
             'article' => $article,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="articles_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Articles $article, EntityManagerInterface $manager): Response
-    {
-        $form = $this->createForm(ArticlesType::class, $article);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($article);
-            $manager->flush();
-            return $this->redirectToRoute('articles_index');
-        }
-
-        return $this->render('admin/articles/edit.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
         ]);
     }
 

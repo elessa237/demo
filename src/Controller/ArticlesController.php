@@ -31,35 +31,6 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/article/create", name="create_article")
-     * @Route("/article/{id}/edit", name="edit_article")
-     */
-    public function edit(Articles $article = null, Request $request, CategorieRepository $categories, ServicePersistance $persist): Response
-    {
-        if (!$article) {
-            $article = new Articles();
-        }
-        $form = $this->createForm(ArticleType::class, $article);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $data = $form->getData();
-            $id = $request->request->get('categorie');
-            $persist->persistArticle($data, $id);
-
-            return $this->redirectToRoute('articles');
-        }
-
-        return $this->render('articles/create_article.html.twig', [
-            'categories' => $categories->findAllCategorie(),
-            'ModeCreation' => $article->getId() == null,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/article/{id}", name="article_show")
      * @author Elessa <elessaspirite@icloud.com>
      */
