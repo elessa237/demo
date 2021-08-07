@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+<h1 class="h3 mb-3 font-weight-normal">Svp connecter vous</h1>
 <form method="post" class="form container" >
     {% if error %}
     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -11,7 +11,7 @@
 
     {% if app.user %}
     <div class="mb-3">
-        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+       vous êtes connecter en tant que {{ app.user.username }}, <a class="link" href="{{ path('app_logout') }}">Logout</a>
     </div>
     {% endif %}
 
