@@ -1,0 +1,50 @@
+{% extends "base/base_admin.html.twig" %}
+
+{% block body %}
+<div class="jumbotron row mb-4 container">
+    <div class="col-8 col-lg-9">
+        <h1 class="h1 text-center">Gestion des articles</h1>
+    </div>
+
+    <div class="col-4 col-lg-2">
+        <a class="btn btn-success" href="{{ path('articles_new') }}">Creer un article</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Auteur</th>
+                <th>Contenu</th>
+                <th>Cree le :</th>
+                <th>Images</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.auteur }}</td>
+                <td>{{ article.contenu | u.truncate(40, '...', false) }}</td>
+                <td>{{ article.createdAt|date('d-m-Y H:i:s')}}</td>
+                <td>{{ article.images }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('articles_show', {'id': article.id}) }}">Voir</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center">
+        {% do articles.setPageRange(4) %}
+        {{ knp_pagination_render(articles, 'base/includes/pagination.html.twig') }}
+    </div>
+</div>
+{% endblock %}

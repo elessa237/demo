@@ -23,8 +23,7 @@ class ArticlesRepository extends ServiceEntityRepository
 
     public function LastTree()
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
+        return $this->query()
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
@@ -32,22 +31,26 @@ class ArticlesRepository extends ServiceEntityRepository
 
     public function findAllArticlesInCategorie(Categorie $id): array
     {
-        return $this->createQueryBuilder('a')
+        return $this->query()
             ->where(':categorie MEMBER OF a.categorie')
             ->setParameter('categorie', $id)
             ->getQuery()
-            ->getResult();;
+            ->getResult();
     }
 
 
     public function findAllArticle() : array
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
+        return $this->query()
             ->getQuery()
             ->getResult();
     }
 
+    private function query()
+    {
+         return $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC');
+    }
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */
