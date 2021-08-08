@@ -23,6 +23,7 @@ class CategorieController extends AbstractController
         $categories = $pagination->paginate($categorieRepository, $request->query->getInt('page',1), 4);
         return $this->render('categorie/categories.html.twig', [
             'categories' => $categories,
+            'current_menu' => 'categories',
         ]);
     }
 

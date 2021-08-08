@@ -21,10 +21,10 @@
                     {% if app.user %}  
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{path('articles_index')}}">Articles</a>
+                            <a class="nav-link {% if current_page is defined and current_page == 'articles' %} active{% endif %}" href="{{path('articles_index')}}">Articles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{path('categories_index')}}">Categories</a>
+                            <a class="nav-link {% if current_page is defined and current_page == 'categories' %} active{% endif %}" href="{{path('categories_index')}}">Categories</a>
                         </li>
                         {#<li class="nav-item">
                             <a class="nav-link" href="{{path('create_article')}}">Creer un article</a>
@@ -34,6 +34,11 @@
                 </div>
             </div>
         </nav>
+        {% if app.user %}
+        <div class="mb-3 me-3 d-flex justify-content-end">
+            {{ app.user.username }}, <a class="link-danger" href="{{ path('app_logout') }}"> Deconnexion</a>
+        </div>
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 

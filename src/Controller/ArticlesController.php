@@ -27,6 +27,7 @@ class ArticlesController extends AbstractController
         $articles = $pagination->paginate($articleRepository, $request->query->getInt('page', 1), 8);
         return $this->render('articles/articles.html.twig', [
             'articles' => $articles,
+            'current_menu' => 'articles',
         ]);
     }
 
