@@ -13,9 +13,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('articles')}}">Articles</a>
                 </li>
-                {#<li class="nav-item">
-                    <a class="nav-link" href="{{path('create_article')}}">Creer un article</a>
-                </li>#}
+                {% if app.user %}    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('app_logout')}}">Deconnexion</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

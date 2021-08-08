@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -20,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-
+ 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
@@ -34,8 +35,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min="4",minMessage="le mot de passe doit contenir au moins 4 caractère")
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="les mot de passe ne sont pas identique"))
+     */
+    public $confirm_password;
 
     /**
      * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="user")
